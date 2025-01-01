@@ -18,15 +18,8 @@ export default function Hero() {
           <div className="relative">
             <div className="aspect-square rounded-lg overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+                src=""
                 alt="Elegant jewelry"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-12 -right-12 w-48 h-48 rounded-lg overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1599459183200-59c7687a0c70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
-                alt="Ring detail"
                 className="w-full h-full object-cover"
               />
             </div>
