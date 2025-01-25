@@ -2,9 +2,9 @@ import Button from '../ui/Button';
 
 export default function Hero() {
   return (
-    <div className="relative min-h-screen bg-burgundy overflow-hidden pt-32">
+    <div className="relative min-h-screen bg-burgundy overflow-hidden pt-32 hero-section">
       <div className="curved-line opacity-10" />
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-26 pb-13">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-gold leading-tight mb-8">

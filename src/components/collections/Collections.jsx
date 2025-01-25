@@ -1,24 +1,24 @@
 export default function Collections() {
   const collections = [
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/RADIANCE%20NECKLACE.JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvUkFESUFOQ0UgTkVDS0xBQ0UuSlBHIiwiaWF0IjoxNzM2MzYxOTk1LCJleHAiOjE3Njc4OTc5OTV9.JAXCPtlYcQ63FTPiUBza0DE3FuyZDPPgjX9OaQZGcXI",
-      title: "RADIANCE NECKLACE"
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Cherry%20necklace.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQ2hlcnJ5IG5lY2tsYWNlLmpwZyIsImlhdCI6MTczNzgyNTMzOSwiZXhwIjoxNzY5MzYxMzM5fQ.ROWsCJKSMZJZXU0RIi6CxRJY3Lky_dz-xMAZN8VZaw0&t=2025-01-25T17%3A15%3A38.957Z",
+      title: "CHERRY NECKLACE"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Exquisite%20SETS.JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhxdWlzaXRlIFNFVFMuSlBHIiwiaWF0IjoxNzM2MzYyMTY0LCJleHAiOjE3Njc4OTgxNjR9.unombe_NpsF9mtC0b1nFEM-IHtO6eF9NcZCz8r-4Gr4",
-      title: "EXQUISITE SETS"
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Kids%20bracelet.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvS2lkcyBicmFjZWxldC5qcGciLCJpYXQiOjE3Mzc4MjQ1MDIsImV4cCI6MTc2OTM2MDUwMn0.C7x2vEq1fQTIMicOFZvJ3qSV58DCjzPiNlz6hKDHE40&t=2025-01-25T17%3A01%3A42.216Z",
+      title: "KIDS BRACELET"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/GLAMOURS%20BANGLES.JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvR0xBTU9VUlMgQkFOR0xFUy5KUEciLCJpYXQiOjE3MzYzNjI1MTQsImV4cCI6MTc2Nzg5ODUxNH0.SWKx4iXVxSKaCZVMauuR0UguTeY2FAVJno4WoxQXWTo",
-      title: "GLAMOUR BANGLES"
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Antique%20Bangle.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQW50aXF1ZSBCYW5nbGUuanBnIiwiaWF0IjoxNzM3ODI1NjIyLCJleHAiOjE3NjkzNjE2MjJ9.EGOJzSwtz3-fstja78uzmzIjhbRv-YWGtpwlrgymGNA&t=2025-01-25T17%3A20%3A22.051Z",
+      title: "ANTIQUE BANGLE"
     }
   ];
 
   return (
-    <div id="collections" className="bg-white py-24 md:py-32">
+    <div id="collections" className="bg-white pt-12 pb-20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <h2 className="font-serif text-3xl md:text-4xl text-jewel-green text-center mb-20">
-          OUR COLLECTIONS
+          THE NEWEST PICKS
         </h2>
         
         <div className="flex flex-col md:flex-row gap-12 md:gap-16">
