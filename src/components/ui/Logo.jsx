@@ -31,7 +31,7 @@ export default function Logo() {
         className={`transition-all duration-500 absolute inset-0 flex items-center justify-center
           ${isScrolled ? 'translate-x-0 opacity-100' : 'translate-x-[150%] opacity-0'}`}
       >
-        <div className="w-40 h-40 mx-auto">
+        <div className="w-16 h-16 ">
           <img src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Screenshot_2025-01-25_145832-ai-brush-removebg-kxbboj2q.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL1NjcmVlbnNob3RfMjAyNS0wMS0yNV8xNDU4MzItYWktYnJ1c2gtcmVtb3ZlYmcta3hiYm9qMnEucG5nIiwiaWF0IjoxNzM3ODA4MTExLCJleHAiOjE3NjkzNDQxMTF9.FflGuqN9Zwrvg0JkO87aZ-r7HYhn2BWEoMH6lK6pSeo&t=2025-01-25T12%3A28%3A31.187Z"
 
              alt="Sangam House of Jewels"

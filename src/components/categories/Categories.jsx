@@ -1,7 +1,7 @@
 export default function Categories() {
     const categories = [
       {
-        image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/CATEGORIES/necklace.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9DQVRFR09SSUVTLyIsImlhdCI6MTczNjM2MTk5NSwiZXhwIjoxNzY3ODk3OTk1fQ.JAXCPtlYcQ63FTPiUBza0DE3FuyZDPPgjX9OaQZGcXI",
+        image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/Necklace.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL05lY2tsYWNlLnBuZyIsImlhdCI6MTczNzgxODI3NSwiZXhwIjoxNzY5MzU0Mjc1fQ.XFYqq7bKb5C4uamrvMzFCIjtwp5NfFbs4ZXjoFEtW_E&t=2025-01-25T15%3A17%3A55.253Z",
         title: "NECKLACE"
       },
       {
