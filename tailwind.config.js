@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'jewel-green': '#2A4238',
-        'gold': '#C6A961',
+        'burgundy': '#69193c',
+        'gold': '#dcb452',
       },
       fontFamily: {
         'serif': ['Playfair Display', 'serif'],
