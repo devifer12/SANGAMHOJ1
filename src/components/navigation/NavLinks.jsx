@@ -27,7 +27,32 @@ export default function NavLinks({ setIsMenuOpen }) {
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) sectionObserver.observe(heroSection);
 
-    return () => sectionObserver.disconnect();
+    // Add smooth scrolling behavior
+    const handleLinkClick = (e) => {
+      if (e.target.tagName === 'A' && e.target.hash) {
+        e.preventDefault();
+        const targetId = e.target.hash.slice(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const navbarHeight = 80; // Height of the fixed navbar
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = targetPosition - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleLinkClick);
+
+    return () => {
+      sectionObserver.disconnect();
+      document.removeEventListener('click', handleLinkClick);
+    };
   }, []);
 
   const handleLinkClick = () => {
