@@ -4,7 +4,6 @@ import Footer from '../components/footer/Footer';
 
 export default function Collections() {
   useEffect(() => {
-    // Scroll to top when navigating to collections
     window.scrollTo(0, 0);
   }, []);
 
@@ -57,6 +56,8 @@ export default function Collections() {
                         alt={item.name}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        width={400}
+                        height={400}
                       />
                     </div>
                     <div className="p-6">

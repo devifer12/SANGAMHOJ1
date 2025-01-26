@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import NavLink from './NavLink';
 import { useLocation, Link } from 'react-router-dom';
 
 export default function NavLinks({ setIsMenuOpen }) {
@@ -9,7 +8,7 @@ export default function NavLinks({ setIsMenuOpen }) {
   useEffect(() => {
     if (location.pathname === '/') {
       const observerOptions = {
-        threshold: 0.6,
+        threshold: 0.3,
         rootMargin: '-80px 0px 0px 0px'
       };
 
@@ -21,20 +20,25 @@ export default function NavLinks({ setIsMenuOpen }) {
         });
       }, observerOptions);
 
+      // Observe hero section first
+      const heroSection = document.querySelector('.hero-section');
+      if (heroSection) {
+        heroSection.id = 'home';
+        sectionObserver.observe(heroSection);
+      }
+
+      // Then observe other sections
       const sections = ['collections', 'about', 'contact'];
       sections.forEach(section => {
         const element = document.getElementById(section);
         if (element) sectionObserver.observe(element);
       });
 
-      const heroSection = document.querySelector('.hero-section');
-      if (heroSection) sectionObserver.observe(heroSection);
-
       return () => {
         sectionObserver.disconnect();
       };
     }
-  }, [location]);
+  }, [location.pathname]);
 
   const handleLinkClick = () => {
     if (setIsMenuOpen) {
