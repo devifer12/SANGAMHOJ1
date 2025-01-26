@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function Logo() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    // Set initial scroll state
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 50);
   }, []);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
     <div className="text-gold text-center relative h-20">
-      {/* Brand Name */}
       <div 
         className={`transition-all duration-500 absolute inset-0 flex flex-col justify-center
           ${isScrolled ? 'translate-x-[-150%] opacity-0' : 'translate-x-0 opacity-100'}`}
@@ -26,16 +23,18 @@ export default function Logo() {
         <p className="text-sm tracking-wider whitespace-nowrap">HOUSE OF JEWELS</p>
       </div>
 
-      {/* Logo */}
       <div 
         className={`transition-all duration-500 absolute inset-0 flex items-center justify-start
           ${isScrolled ? 'translate-x-0 opacity-100' : 'translate-x-[150%] opacity-0'}`}
       >
         <div className="w-12 h-12">
           <img
-            src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL0xvZ28ucG5nIiwiaWF0IjoxNzM3ODcyMzAwLCJleHAiOjE3Njk0MDgzMDB9.gFxvyX6TpeWZQ8b5HEadwhRyQqGOv0KaiLFSDSSf4MQ&t=2025-01-26T06%3A18%3A20.244Z"
+            src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL0xvZ28ucG5nIiwiaWF0IjoxNzM3ODc2Mzg0LCJleHAiOjE3Njk0MTIzODR9.fuC4Ve599pNpf0DGm97oXHCwwH6o74MA6KcQgnHJMA0&t=2025-01-26T07%3A26%3A24.271Z"
             alt="Sangam House of Jewels"
             className="w-full h-full object-contain"
+            width={48}
+            height={48}
+            loading="eager"
           />
         </div>
       </div>

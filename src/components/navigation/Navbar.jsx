@@ -8,20 +8,20 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-burgundy/95 backdrop-blur-sm px-4 md:px-6 border-b border-gold/20">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center h-20">
-          {/* Logo container with fixed width */}
+        <div className="flex items-center justify-between h-20">
+          {/* Logo container */}
           <div className="px-5 w-40">
             <Logo />
           </div>
 
-          {/* Navigation links */}
+          {/* Navigation links - desktop */}
           <div className="hidden md:block flex-1">
             <NavLinks />
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - moved to the right */}
           <button 
-            className="md:hidden text-gold"
+            className="md:hidden text-gold ml-auto"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >

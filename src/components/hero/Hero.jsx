@@ -20,9 +20,12 @@ export default function Hero() {
           <div className="relative">
             <div className="aspect-square rounded-lg overflow-hidden">
               <img 
-                src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/HERO%20SECTION/HeroImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9IRVJPIFNFQ1RJT04vSGVyb0ltYWdlLnBuZyIsImlhdCI6MTczNjM1ODg5NCwiZXhwIjoxNzk5NDMwODk0fQ.oTgk5IAOTAKDjBeG5GuXFQIApTAr4I3E8YuVRJnnZ-Y&t=2025-01-08T17%3A54%3A54.822Z"
+                src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/HERO%20SECTION/HeroImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9IRVJPIFNFQ1RJT04vSGVyb0ltYWdlLnBuZyIsImlhdCI6MTczNzg3NjA4MSwiZXhwIjoxNzY5NDEyMDgxfQ.n1PJNaCFhuQqI3m9Wre1UlT-pxuDpt4tUurYn_FQEbE&t=2025-01-26T07%3A21%3A21.528Z"
                 alt="Hero Jewelry"
                 className="w-full h-full object-contain"
+                loading="eager"
+                width={600}
+                height={600}
               />
             </div>
           </div>

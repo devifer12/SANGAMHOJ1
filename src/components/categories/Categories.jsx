@@ -1,15 +1,15 @@
 export default function Categories() {
   const categories = [
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/Necklace.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL05lY2tsYWNlLnBuZyIsImlhdCI6MTczNzgxODI3NSwiZXhwIjoxNzY5MzU0Mjc1fQ.XFYqq7bKb5C4uamrvMzFCIjtwp5NfFbs4ZXjoFEtW_E&t=2025-01-25T15%3A17%3A55.253Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/Necklace.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL05lY2tsYWNlLnBuZyIsImlhdCI6MTczNzg3NjMyMSwiZXhwIjoxNzY5NDEyMzIxfQ.l3f6VBSgKQj138E5i_j7byjQ5R4tP_I4vhRMiDxgKWg&t=2025-01-26T07%3A25%3A21.096Z",
       title: "CHAINS"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/JEWELLERY.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0pFV0VMTEVSWS5qcGciLCJpYXQiOjE3Mzc4MjYxMTcsImV4cCI6MTc2OTM2MjExN30.QNDRhVClQ79CG4SkeHUbO7x-vpzHz9syfp_2aGnflYw&t=2025-01-25T17%3A28%3A36.992Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/JEWELLERY.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0pFV0VMTEVSWS5qcGciLCJpYXQiOjE3Mzc4NzYyNzUsImV4cCI6MTc2OTQxMjI3NX0.-riiIje25Nrt_G5OWmJvQffjBDBO6upbYWhNz-8MpD0&t=2025-01-26T07%3A24%3A35.131Z",
       title: "JEWELLERY"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/BANGLES.JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0JBTkdMRVMuSlBHIiwiaWF0IjoxNzM3ODI1ODI2LCJleHAiOjE3NjkzNjE4MjZ9.7WO4M5cB_HN7sIUsUZHHr3MR-ttv4mvgIBr4U8oMS88&t=2025-01-25T17%3A23%3A46.471Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/BANGLES.JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0JBTkdMRVMuSlBHIiwiaWF0IjoxNzM3ODc2MzQ5LCJleHAiOjE3Njk0MTIzNDl9.6ZwxPoIJJP5TTxkSM1H17jGaAbkk_544L98d0Psn5l4&t=2025-01-26T07%3A25%3A49.020Z",
       title: "BANGLES"
     }
   ];
@@ -28,6 +28,9 @@ export default function Categories() {
                   src={category.image}
                   alt={category.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  width={400}
+                  height={400}
                 />
               </div>
               <div className="absolute inset-0 flex items-center justify-center bg-burgundy bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block hidden">
