@@ -1,7 +1,7 @@
 export default function Collections() {
   const collections = [
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Kidsbracelet.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvS2lkc2JyYWNlbGV0LmpwZyIsImlhdCI6MTczNzg3OTE3OSwiZXhwIjoxNzY5NDE1MTc5fQ.cak9hY9IssX1eiiTnwfjqqR2DQDr8Z7SVJQSD4cEc0k&t=2025-01-26T08%3A12%3A59.760Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Cherrynecklace.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQ2hlcnJ5bmVja2xhY2UuanBnIiwiaWF0IjoxNzM3ODc5NTE1LCJleHAiOjE3Njk0MTU1MTV9.GlmFsHFmJXp9OrB9dIuTYZj_DDN2TYZe4bLFzbFk6MQ&t=2025-01-26T08%3A18%3A35.048Z",
       title: "CHERRY NECKLACE"
     },
     {
