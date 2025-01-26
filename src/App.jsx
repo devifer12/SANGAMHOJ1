@@ -1,20 +1,15 @@
 import React from 'react';
-import Navbar from './components/navigation/Navbar';
-import Hero from './components/hero/Hero';
-import Collections from './components/collections/Collections';
-import Categories from './components/categories/Categories';
-import Testimonials from './components/testimonials/Testimonials';
-import Footer from './components/footer/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home.jsx';
+import Collections from './pages/Collections';
 
 export default function App() {
   return (
-    <div className="bg-burgundy min-h-screen">
-      <Navbar />
-      <Hero />
-      <Collections />
-      <Categories />
-      <Testimonials />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/collections" element={<Collections />} />
+      </Routes>
+    </Router>
   );
 }

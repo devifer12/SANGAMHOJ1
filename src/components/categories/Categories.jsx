@@ -1,15 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Categories() {
+  const navigate = useNavigate();
   const categories = [
     {
       image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/Chains.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0NoYWlucy5wbmciLCJpYXQiOjE3Mzc4NzkzNTIsImV4cCI6MTc2OTQxNTM1Mn0.qF_Kjbv6bV60rFhe8vypEQqH1xKhKxHFE0sjfgi0SKg&t=2025-01-26T08%3A15%3A52.359Z",
       title: "CHAINS"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/JEWELLERY%20(1).jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0pFV0VMTEVSWSAoMSkuanBnIiwiaWF0IjoxNzM3ODc5MzMyLCJleHAiOjE3Njk0MTUzMzJ9.xGNeWNHFUZhluc2vjUocFEOVyNnVFseuDOZrqxM4AUU&t=2025-01-26T08%3A15%3A32.267Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/JEWELLERY%20(1).jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0pFV0VMTEVSWSAoMSkuanBnIiwiaWF0IjoxNzM3ODc5MzMyLCJleHAiOjE3Njk0MTUzMzJ9.xGNeWNHFUZhluc2vjUocFEOVyNnVFseuDOZrqxM4AUU",
       title: "JEWELLERY"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/BANGLES%20(1).JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0JBTkdMRVMgKDEpLkpQRyIsImlhdCI6MTczNzg3OTM4MiwiZXhwIjoxNzY5NDE1MzgyfQ.3AbrVYsG3fG47CKkhjQzsH3jNwWffvECKOV9q0oe0ts&t=2025-01-26T08%3A16%3A22.149Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/BANGLES%20(1).JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0JBTkdMRVMgKDEpLkpQRyIsImlhdCI6MTczNzg3OTM4MiwiZXhwIjoxNzY5NDE1MzgyfQ.3AbrVYsG3fG47CKkhjQzsH3jNwWffvECKOV9q0oe0ts",
       title: "BANGLES"
     }
   ];
@@ -22,7 +25,11 @@ export default function Categories() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((category) => (
-            <div key={category.title} className="group cursor-pointer relative">
+            <div 
+              key={category.title} 
+              className="group cursor-pointer relative"
+              onClick={() => navigate('/collections')}
+            >
               <div className="aspect-square rounded-lg overflow-hidden">
                 <img
                   src={category.image}
@@ -41,7 +48,10 @@ export default function Categories() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <button className="border-2 border-burgundy text-burgundy px-8 py-3 hover:bg-burgundy hover:text-gold transition-colors">
+          <button 
+            onClick={() => navigate('/collections')}
+            className="border-2 border-burgundy text-burgundy px-8 py-3 hover:bg-burgundy hover:text-gold transition-colors"
+          >
             EXPLORE
           </button>
         </div>

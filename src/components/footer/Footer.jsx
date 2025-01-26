@@ -1,4 +1,19 @@
+import { useScrollToSection } from '../../hooks/useScrollToSection';
+import { useNavigate } from 'react-router-dom';
+
 export default function Footer() {
+  const scrollToSection = useScrollToSection();
+  const navigate = useNavigate();
+
+  const handleNavigation = (path, section = null) => {
+    if (section) {
+      scrollToSection(section);
+    } else {
+      navigate(path);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <footer id="contact" className="bg-burgundy py-16 border-t border-gold/20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -12,17 +27,41 @@ export default function Footer() {
           <div>
             <h3 className="text-gold font-bold mb-4">Quick Links</h3>
             <ul className="text-gold/80 space-y-2">
-              <li><a href="#" className="hover:text-gold">Home</a></li>
-              <li><a href="#collections" className="hover:text-gold">Collections</a></li>
-              <li><a href="#about" className="hover:text-gold">About</a></li>
+              <li>
+                <button onClick={() => handleNavigation('/')} className="hover:text-gold">
+                  Home
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavigation('/collections')} className="hover:text-gold">
+                  Collections
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavigation('/', 'about')} className="hover:text-gold">
+                  About
+                </button>
+              </li>
             </ul>
           </div>
           <div>
             <h3 className="text-gold font-bold mb-4">Legal</h3>
             <ul className="text-gold/80 space-y-2">
-              <li><a href="#" className="hover:text-gold">Privacy</a></li>
-              <li><a href="#" className="hover:text-gold">Terms</a></li>
-              <li><a href="#" className="hover:text-gold">Contact</a></li>
+              <li>
+                <button onClick={() => handleNavigation('/privacy')} className="hover:text-gold">
+                  Privacy
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavigation('/terms')} className="hover:text-gold">
+                  Terms
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavigation('/', 'contact')} className="hover:text-gold">
+                  Contact
+                </button>
+              </li>
             </ul>
           </div>
           <div>

@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Collections() {
+  const navigate = useNavigate();
   const collections = [
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Cherrynecklace.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQ2hlcnJ5bmVja2xhY2UuanBnIiwiaWF0IjoxNzM3ODc5NTE1LCJleHAiOjE3Njk0MTU1MTV9.GlmFsHFmJXp9OrB9dIuTYZj_DDN2TYZe4bLFzbFk6MQ&t=2025-01-26T08%3A18%3A35.048Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Cherrynecklace.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQ2hlcnJ5bmVja2xhY2UuanBnIiwiaWF0IjoxNzM3ODc5NTE1LCJleHAiOjE3Njk0MTU1MTV9.GlmFsHFmJXp9OrB9dIuTYZj_DDN2TYZe4bLFzbFk6MQ",
       title: "CHERRY NECKLACE"
     },
     {
@@ -31,7 +34,10 @@ export default function Collections() {
                 "Explore our curated selection of featured products, where exceptional craftsmanship meets timeless elegance. Handpicked to showcase the finest in design and quality, these pieces are perfect for every occasion."
               </p>
               <div className="hidden md:block">
-                <button className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text- transition-colors">
+                <button 
+                  onClick={() => navigate('/collections')}
+                  className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text-white transition-colors"
+                >
                   EXPLORE NOW
                 </button>
               </div>
@@ -40,7 +46,11 @@ export default function Collections() {
 
           <div className="md:w-3/4 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {collections.map((collection) => (
-              <div key={collection.title} className="group cursor-pointer">
+              <div 
+                key={collection.title} 
+                className="group cursor-pointer"
+                onClick={() => navigate('/collections')}
+              >
                 <div className="aspect-square rounded-lg overflow-hidden mb-4 bg-white shadow-lg hover:shadow-xl transition-shadow">
                   <img
                     src={collection.image}
@@ -59,7 +69,10 @@ export default function Collections() {
           </div>
         </div>
         <div className="md:hidden text-center mt-12">
-          <button className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text-white transition-colors">
+          <button 
+            onClick={() => navigate('/collections')}
+            className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text-white transition-colors"
+          >
             EXPLORE NOW
           </button>
         </div>

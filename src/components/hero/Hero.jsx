@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
 
 export default function Hero() {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-h-screen bg-burgundy overflow-hidden pt-32 mb-6 hero-section">
       <div className="curved-line opacity-10" />
@@ -14,7 +17,7 @@ export default function Hero() {
               UNVEILED
             </h1>
             <div className="hidden md:block">
-              <Button>EXPLORE COLLECTIONS</Button>
+              <Button onClick={() => navigate('/collections')}>EXPLORE COLLECTIONS</Button>
             </div>
           </div>
           <div className="relative">
@@ -31,7 +34,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="md:hidden mt-8 text-center">
-          <Button>EXPLORE COLLECTIONS</Button>
+          <Button onClick={() => navigate('/collections')}>EXPLORE COLLECTIONS</Button>
         </div>
       </div>
     </div>
