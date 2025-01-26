@@ -8,15 +8,20 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-burgundy/95 backdrop-blur-sm px-4 md:px-6 border-b border-gold/20">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center relative">
-          <div className="flex-1">
+        <div className="flex items-center h-20">
+          {/* Logo container with fixed width */}
+          <div className="px-5 w-40">
             <Logo />
           </div>
-          <div className="hidden md:block">
+
+          {/* Navigation links */}
+          <div className="hidden md:block flex-1">
             <NavLinks />
           </div>
+
+          {/* Mobile menu button */}
           <button 
-            className="md:hidden text-gold absolute right-0 top-1/2 -translate-y-1/2"
+            className="md:hidden text-gold"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -25,7 +30,9 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden mt-4`}>
+
+        {/* Mobile menu */}
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden mt-4 pb-4`}>
           <NavLinks />
         </div>
       </div>

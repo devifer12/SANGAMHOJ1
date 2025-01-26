@@ -6,8 +6,8 @@ export default function NavLinks() {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.6, // Section needs to be 60% visible
-      rootMargin: '-80px 0px 0px 0px' // Offset for the fixed header
+      threshold: 0.6,
+      rootMargin: '-80px 0px 0px 0px'
     };
 
     const sectionObserver = new IntersectionObserver((entries) => {
@@ -18,14 +18,12 @@ export default function NavLinks() {
       });
     }, observerOptions);
 
-    // Observe all sections
     const sections = ['collections', 'about', 'contact'];
     sections.forEach(section => {
       const element = document.getElementById(section);
       if (element) sectionObserver.observe(element);
     });
 
-    // Observe hero section for home
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) sectionObserver.observe(heroSection);
 
@@ -33,7 +31,7 @@ export default function NavLinks() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-gold items-center">
+    <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-gold items-center md:justify-end">
       <NavLink href="#" active={activeSection === 'home'}>Home</NavLink>
       <NavLink href="#collections" active={activeSection === 'collections'}>Collections</NavLink>
       <NavLink href="#about" active={activeSection === 'about'}>About us</NavLink>
