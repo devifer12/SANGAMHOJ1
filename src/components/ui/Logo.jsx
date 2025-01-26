@@ -33,7 +33,7 @@ export default function Logo() {
       >
         <div className="w-12 h-12">
           <img
-            src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Screenshot_2025-01-25_145832-ai-brush-removebg-kxbboj2q.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL1NjcmVlbnNob3RfMjAyNS0wMS0yNV8xNDU4MzItYWktYnJ1c2gtcmVtb3ZlYmcta3hiYm9qMnEucG5nIiwiaWF0IjoxNzM3ODA4MTExLCJleHAiOjE3NjkzNDQxMTF9.FflGuqN9Zwrvg0JkO87aZ-r7HYhn2BWEoMH6lK6pSeo&t=2025-01-25T12%3A28%3A31.187Z"
+            src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL0xvZ28ucG5nIiwiaWF0IjoxNzM3ODcyMzAwLCJleHAiOjE3Njk0MDgzMDB9.gFxvyX6TpeWZQ8b5HEadwhRyQqGOv0KaiLFSDSSf4MQ&t=2025-01-26T06%3A18%3A20.244Z"
             alt="Sangam House of Jewels"
             className="w-full h-full object-contain"
           />

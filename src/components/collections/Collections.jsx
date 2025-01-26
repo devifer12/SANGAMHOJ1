@@ -31,9 +31,11 @@ export default function Collections() {
               <p className="text-gray-600 mb-8">
                 "Explore our curated selection of featured products, where exceptional craftsmanship meets timeless elegance. Handpicked to showcase the finest in design and quality, these pieces are perfect for every occasion."
               </p>
-              <button className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text-white transition-colors">
-                EXPLORE NOW
-              </button>
+              <div className="hidden md:block">
+                <button className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text-white transition-colors">
+                  EXPLORE NOW
+                </button>
+              </div>
             </div>
           </div>
 
@@ -54,6 +56,11 @@ export default function Collections() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="md:hidden text-center mt-12">
+          <button className="border border-jewel-green text-jewel-green px-8 py-3 rounded-full hover:bg-jewel-green hover:text-white transition-colors">
+            EXPLORE NOW
+          </button>
         </div>
       </div>
     </div>
