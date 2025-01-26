@@ -1,15 +1,15 @@
 export default function Categories() {
   const categories = [
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/Necklace.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL05lY2tsYWNlLnBuZyIsImlhdCI6MTczNzg3NjMyMSwiZXhwIjoxNzY5NDEyMzIxfQ.l3f6VBSgKQj138E5i_j7byjQ5R4tP_I4vhRMiDxgKWg&t=2025-01-26T07%3A25%3A21.096Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/Chains.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0NoYWlucy5wbmciLCJpYXQiOjE3Mzc4NzkzNTIsImV4cCI6MTc2OTQxNTM1Mn0.qF_Kjbv6bV60rFhe8vypEQqH1xKhKxHFE0sjfgi0SKg&t=2025-01-26T08%3A15%3A52.359Z",
       title: "CHAINS"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/JEWELLERY.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0pFV0VMTEVSWS5qcGciLCJpYXQiOjE3Mzc4NzYyNzUsImV4cCI6MTc2OTQxMjI3NX0.-riiIje25Nrt_G5OWmJvQffjBDBO6upbYWhNz-8MpD0&t=2025-01-26T07%3A24%3A35.131Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/JEWELLERY%20(1).jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0pFV0VMTEVSWSAoMSkuanBnIiwiaWF0IjoxNzM3ODc5MzMyLCJleHAiOjE3Njk0MTUzMzJ9.xGNeWNHFUZhluc2vjUocFEOVyNnVFseuDOZrqxM4AUU&t=2025-01-26T08%3A15%3A32.267Z",
       title: "JEWELLERY"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/BANGLES.JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0JBTkdMRVMuSlBHIiwiaWF0IjoxNzM3ODc2MzQ5LCJleHAiOjE3Njk0MTIzNDl9.6ZwxPoIJJP5TTxkSM1H17jGaAbkk_544L98d0Psn5l4&t=2025-01-26T07%3A25%3A49.020Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Explore%20coll/BANGLES%20(1).JPG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvRXhwbG9yZSBjb2xsL0JBTkdMRVMgKDEpLkpQRyIsImlhdCI6MTczNzg3OTM4MiwiZXhwIjoxNzY5NDE1MzgyfQ.3AbrVYsG3fG47CKkhjQzsH3jNwWffvECKOV9q0oe0ts&t=2025-01-26T08%3A16%3A22.149Z",
       title: "BANGLES"
     }
   ];

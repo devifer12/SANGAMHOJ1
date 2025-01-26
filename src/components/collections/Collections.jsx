@@ -1,15 +1,15 @@
 export default function Collections() {
   const collections = [
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Cherry%20necklace.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQ2hlcnJ5IG5lY2tsYWNlLmpwZyIsImlhdCI6MTczNzg3NjE0OSwiZXhwIjoxNzY5NDEyMTQ5fQ.8-uhF_66bRTW8VrJH1Iy98yopynPIrz2sz-sEVtA68I&t=2025-01-26T07%3A22%3A29.219Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Kidsbracelet.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvS2lkc2JyYWNlbGV0LmpwZyIsImlhdCI6MTczNzg3OTE3OSwiZXhwIjoxNzY5NDE1MTc5fQ.cak9hY9IssX1eiiTnwfjqqR2DQDr8Z7SVJQSD4cEc0k&t=2025-01-26T08%3A12%3A59.760Z",
       title: "CHERRY NECKLACE"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Kids%20bracelet.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvS2lkcyBicmFjZWxldC5qcGciLCJpYXQiOjE3Mzc4NzYxNzIsImV4cCI6MTc2OTQxMjE3Mn0.S2k_Blj0sTv6zEU9I9xTaU_fs7sdqrFkC5WHvAuB9Fs&t=2025-01-26T07%3A22%3A52.144Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Kidsbracelet.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvS2lkc2JyYWNlbGV0LmpwZyIsImlhdCI6MTczNzg3OTE3OSwiZXhwIjoxNzY5NDE1MTc5fQ.cak9hY9IssX1eiiTnwfjqqR2DQDr8Z7SVJQSD4cEc0k&t=2025-01-26T08%3A12%3A59.760Z",
       title: "KIDS BRACELET"
     },
     {
-      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/Antique%20Bangle.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQW50aXF1ZSBCYW5nbGUuanBnIiwiaWF0IjoxNzM3ODc2MTk4LCJleHAiOjE3Njk0MTIxOTh9.TibXyKXLxYhjA9QUJNrdD8-P2lNsunD5QM15a2JcgFs&t=2025-01-26T07%3A23%3A17.906Z",
+      image: "https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/OUR%20COLLECTIONS/AntiqueBangle.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9PVVIgQ09MTEVDVElPTlMvQW50aXF1ZUJhbmdsZS5qcGciLCJpYXQiOjE3Mzc4NzkxNDYsImV4cCI6MTc2OTQxNTE0Nn0.486wP6ctLR6rP9XU6rBFhx4P7q6u1BcqIZp5AaRq8Gw&t=2025-01-26T08%3A12%3A26.236Z",
       title: "ANTIQUE BANGLE"
     }
   ];
