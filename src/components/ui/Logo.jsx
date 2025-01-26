@@ -16,7 +16,7 @@ export default function Logo() {
   return (
     <div className="text-gold text-center relative h-20">
       <div 
-        className={`transition-all duration-500 absolute inset-0 flex flex-col justify-center
+        className={`transition-all duration-500 absolute inset-0 flex flex-col justify-center z-10
           ${isScrolled ? 'translate-x-[-150%] opacity-0' : 'translate-x-0 opacity-100'}`}
       >
         <h1 className="font-serif text-2xl">SANGAM</h1>
@@ -24,7 +24,7 @@ export default function Logo() {
       </div>
 
       <div 
-        className={`transition-all duration-500 absolute inset-0 flex items-center justify-start
+        className={`transition-all duration-500 absolute inset-0 flex items-center justify-start z-10
           ${isScrolled ? 'translate-x-0 opacity-100' : 'translate-x-[150%] opacity-0'}`}
       >
         <div className="w-12 h-12">

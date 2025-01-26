@@ -21,7 +21,7 @@ export default function Navbar() {
 
           {/* Mobile menu button - moved to the right */}
           <button 
-            className="md:hidden text-gold ml-auto"
+            className="md:hidden text-gold ml-auto z-20 relative"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -33,7 +33,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden mt-4 pb-4`}>
-          <NavLinks />
+          <NavLinks setIsMenuOpen={setIsMenuOpen} />
         </div>
       </div>
     </nav>

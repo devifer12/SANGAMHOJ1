@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import NavLink from './NavLink';
 
-export default function NavLinks() {
+export default function NavLinks({ setIsMenuOpen }) {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -30,12 +30,26 @@ export default function NavLinks() {
     return () => sectionObserver.disconnect();
   }, []);
 
+  const handleLinkClick = () => {
+    if (setIsMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-gold items-center md:justify-end">
-      <NavLink href="#" active={activeSection === 'home'}>Home</NavLink>
-      <NavLink href="#collections" active={activeSection === 'collections'}>Collections</NavLink>
-      <NavLink href="#about" active={activeSection === 'about'}>About us</NavLink>
-      <NavLink href="#contact" active={activeSection === 'contact'}>Contact</NavLink>
+      <div onClick={handleLinkClick}>
+        <NavLink href="#" active={activeSection === 'home'}>Home</NavLink>
+      </div>
+      <div onClick={handleLinkClick}>
+        <NavLink href="#collections" active={activeSection === 'collections'}>Collections</NavLink>
+      </div>
+      <div onClick={handleLinkClick}>
+        <NavLink href="#about" active={activeSection === 'about'}>About us</NavLink>
+      </div>
+      <div onClick={handleLinkClick}>
+        <NavLink href="#contact" active={activeSection === 'contact'}>Contact</NavLink>
+      </div>
     </div>
   );
 }
