@@ -1,25 +1,26 @@
-import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
-  const scrollToSection = useScrollToSection();
   const navigate = useNavigate();
 
-  const handleNavigation = (path, section = null) => {
-    if (section) {
-      scrollToSection(section);
-    } else {
-      navigate(path);
-      window.scrollTo(0, 0);
-    }
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
   };
 
   return (
-    <footer id="contact" className="bg-burgundy py-16 border-t border-gold/20">
+    <footer id="contact" className="bg-burgundy pt-16 pb-10 border-t border-gold/20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="text-gold">
+            <div className="text-gold flex flex-col items-center">
+              <img
+                src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL0xvZ28ucG5nIiwiaWF0IjoxNzM3ODc2Mzg0LCJleHAiOjE3Njk0MTIzODR9.fuC4Ve599pNpf0DGm97oXHCwwH6o74MA6KcQgnHJMA0"
+                alt="Sangam Logo"
+                className="w-10 h-8 mb-2"
+                width={48}
+                height={48}
+              />
               <h1 className="font-serif text-xl">SANGAM</h1>
               <p className="text-sm tracking-wider">HOUSE OF JEWELS</p>
             </div>
@@ -38,8 +39,8 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavigation('/', 'about')} className="hover:text-gold">
-                  About
+                <button onClick={() => handleNavigation('/about')} className="hover:text-gold">
+                  About Us
                 </button>
               </li>
             </ul>
@@ -58,14 +59,14 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavigation('/', 'contact')} className="hover:text-gold">
+                <button onClick={() => handleNavigation('/contact')} className="hover:text-gold">
                   Contact
                 </button>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-gold font-bold mb-4">Connect</h3>
+            <h3 className="text-gold font-bold ml-5 mb-4">Connect</h3>
             <div className="flex gap-4 text-gold">
               <a href="#" className="hover:text-gold/80">
                 <span className="sr-only">Facebook</span>
@@ -82,8 +83,10 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="text-center text-gold/60 text-sm">
-          © 2024 Sangam. All rights reserved.
+        <div className="w-full text-center pt-20">
+          <div className="text-gold/60 text-sm">
+                © 2024 Sangam. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>

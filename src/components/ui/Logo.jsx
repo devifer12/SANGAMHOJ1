@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Logo() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -13,8 +15,16 @@ export default function Logo() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  const handleLogoClick = () => {
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="text-gold text-center relative h-20">
+    <div 
+      className="text-gold text-center relative h-20 cursor-pointer"
+      onClick={handleLogoClick}
+    >
       <div 
         className={`transition-all duration-500 absolute inset-0 flex flex-col justify-center z-10
           ${isScrolled ? 'translate-x-[-150%] opacity-0' : 'translate-x-0 opacity-100'}`}

@@ -63,15 +63,15 @@ export default function NavLinks({ setIsMenuOpen }) {
         </Link>
       </div>
       <div onClick={handleLinkClick}>
-        <Link to="/#about" className={`transition-all duration-300 border-b-2 ${
-          location.pathname === '/' && activeSection === 'about' ? 'border-gold' : 'border-transparent hover:border-gold/50'
+        <Link to="/about" className={`transition-all duration-300 border-b-2 ${
+          location.pathname === '/about' ? 'border-gold' : 'border-transparent hover:border-gold/50'
         }`}>
-          About us
+          About Us
         </Link>
       </div>
       <div onClick={handleLinkClick}>
-        <Link to="/#contact" className={`transition-all duration-300 border-b-2 ${
-          location.pathname === '/' && activeSection === 'contact' ? 'border-gold' : 'border-transparent hover:border-gold/50'
+        <Link to="/contact" className={`transition-all duration-300 border-b-2 ${
+          location.pathname === '/contact' ? 'border-gold' : 'border-transparent hover:border-gold/50'
         }`}>
           Contact
         </Link>
