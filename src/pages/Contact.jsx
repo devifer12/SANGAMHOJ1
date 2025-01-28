@@ -61,17 +61,17 @@ export default function Contact() {
               <div className="space-y-4">
                 <p>
                   <strong>Address:</strong><br />
-                  702 DD JEWELS BLDG<br />
-                  1st AGYARI LANE,ZAVERI BAZZAR<br />
-                  Mumbai, 400001
+                  702, DD JEWELS,7th FLOOR,<br />
+                  1st AGAIRY LANE,ZAVERI BAZZAR,<br />
+                  KALBADEVI ROAD,Mumbai, 400002
                 </p>
                 <p>
                   <strong>Phone:</strong><br />
-                  +91 123 456 7890
+                  +91 9920033377
                 </p>
                 <p>
                   <strong>Email:</strong><br />
-                  order@sangamjewels.com
+                  sangamhoj@gmail.com
                 </p>
                 <p>
                   <strong>Hours:</strong><br />
