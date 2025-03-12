@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import LoginButton from '../ui/LoginButton';
 
 export default function NavLinks({ setIsMenuOpen }) {
   const [activeSection, setActiveSection] = useState('home');
@@ -76,6 +77,7 @@ export default function NavLinks({ setIsMenuOpen }) {
           Contact
         </Link>
       </div>
+      <LoginButton />
     </div>
   );
 }

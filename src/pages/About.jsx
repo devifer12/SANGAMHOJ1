@@ -16,14 +16,15 @@ export default function About() {
             About Us
           </h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img
-                src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/HERO%20SECTION/HeroImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9IRVJPIFNFQ1RJT04vSGVyb0ltYWdlLnBuZyIsImlhdCI6MTczNzg3NjA4MSwiZXhwIjoxNzY5NDEyMDgxfQ.n1PJNaCFhuQqI3m9Wre1UlT-pxuDpt4tUurYn_FQEbE"
-                alt="About Sangam"
-                className="w-full rounded-lg"
-                loading="eager"
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div className="w-full">
+              <div className="aspect-auto rounded-lg overflow-hidden">
+                <img
+                  src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/HERO%20SECTION/HeroImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9IRVJPIFNFQ1RJT04vSGVyb0ltYWdlLnBuZyIsImlhdCI6MTczNzg3NjA4MSwiZXhwIjoxNzY5NDEyMDgxfQ.n1PJNaCFhuQqI3m9Wre1UlT-pxuDpt4tUurYn_FQEbE"
+                  alt="About Sangam"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
             </div>
             <div className="text-gold">
               <h2 className="font-serif text-3xl mb-6">Our Legacy</h2>
