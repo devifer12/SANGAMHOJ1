@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
-import Dashboard from "./pages/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard";
 import supabase from "./config/supabaseClient";
 
 export default function App() {
