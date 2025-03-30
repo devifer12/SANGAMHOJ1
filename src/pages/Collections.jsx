@@ -3,7 +3,6 @@ import Navbar from '../components/navigation/Navbar';
 import Footer from '../components/footer/Footer';
 
 export default function Collections() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -88,10 +87,8 @@ export default function Collections() {
   const filteredCollections = collections.map(collection => ({
     ...collection,
     items: collection.items.filter(item => {
-      const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          item.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesFilter = !selectedFilter || item.type === selectedFilter;
-      return matchesSearch && matchesFilter;
+      return matchesFilter;
     })
   })).filter(collection => collection.items.length > 0);
 
@@ -113,17 +110,6 @@ export default function Collections() {
           <h1 className="font-serif text-4xl md:text-5xl text-gold text-center mb-16">
             Our Collections
           </h1>
-          
-          {/* Search Bar */}
-          <div className="mb-8">
-            <input
-              type="text"
-              placeholder="Search collections..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-gold/30 text-gold placeholder-gold/50 focus:outline-none focus:border-gold"
-            />
-          </div>
 
           {/* Filter Options */}
           <div className="flex flex-wrap gap-4 mb-12">
@@ -204,7 +190,9 @@ export default function Collections() {
 
               {/* Similar Items Section (30% width) */}
               <div className="md:w-[30%] p-8 border-t md:border-l md:border-t-0 border-gold/20">
-                <h3 className="font-serif text-xl text-gold mb-6">Similar Items</h3>
+                <h3 className="font-serif text-xl text-gold mb-6">
+                  Similar Items
+                </h3>
                 <div className="space-y-6">
                   {getSimilarItems(selectedItem).map((item) => (
                     <div 
