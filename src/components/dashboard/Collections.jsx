@@ -11,12 +11,12 @@ export default function Collections() {
   useEffect(() => {
     fetchCollections();
 
-    // Set up realtime subscription for collection updates
+    // Set up realtime subscription for category updates (since categories are our collections)
     const subscription = supabase
-      .channel("collections-changes")
+      .channel("categories-changes")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "collections" },
+        { event: "*", schema: "public", table: "categories" },
         fetchCollections,
       )
       .subscribe();
@@ -28,10 +28,11 @@ export default function Collections() {
 
   async function fetchCollections() {
     try {
+      // Fetch categories as collections
       const { data, error } = await supabase
-        .from("collections")
-        .select("*, categories(title)")
-        .order("created_at", { ascending: false });
+        .from("categories")
+        .select("*")
+        .order("title", { ascending: true });
 
       if (error) throw error;
       setCollections(data || []);
@@ -43,7 +44,8 @@ export default function Collections() {
   }
 
   async function handleEdit(id) {
-    navigate(`/dashboard/edit-collection/${id}`);
+    // Navigate to edit category page
+    navigate(`/dashboard/edit-product/${id}`);
   }
 
   if (loading) return <div className="text-gold">Loading collections...</div>;
@@ -53,7 +55,7 @@ export default function Collections() {
     return (
       <div className="text-center text-gold py-8">
         <p className="mb-4">No collections found.</p>
-        <p>Collections are automatically created when you add categories.</p>
+        <p>Add collections in the Products section.</p>
       </div>
     );
   }
@@ -72,19 +74,23 @@ export default function Collections() {
           >
             <div className="aspect-square mb-4">
               <img
-                src={collection.image_url}
-                alt={collection.name}
+                src={collection.image}
+                alt={collection.title}
                 className="w-full h-full object-cover rounded"
               />
             </div>
             <h3 className="text-xl font-serif text-gold mb-2">
-              {collection.name}
+              {collection.title}
             </h3>
-            <p className="text-gold/80 mb-4">{collection.description}</p>
             <div className="flex justify-between items-center">
-              <span className="text-gold/60 text-sm">
-                Category: {collection.categories?.title || "None"}
-              </span>
+              <button
+                onClick={() =>
+                  navigate(`/dashboard/products?category=${collection.id}`)
+                }
+                className="text-gold hover:text-gold/80"
+              >
+                View Products
+              </button>
               <button
                 onClick={() => handleEdit(collection.id)}
                 className="text-gold hover:text-gold/80"

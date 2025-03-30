@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import supabase from "../config/supabaseClient";
 
 // Dashboard components
-const DashboardHome = React.lazy(
-  () => import("../components/dashboard/DashboardHome"),
-);
 const Collections = React.lazy(
   () => import("../components/dashboard/Collections"),
-);
-const AddCollection = React.lazy(
-  () => import("../components/dashboard/AddCollection"),
-);
-const EditCollection = React.lazy(
-  () => import("../components/dashboard/EditCollection"),
 );
 const NewestPicks = React.lazy(
   () => import("../components/dashboard/NewestPicks"),
 );
-const CategoriesManager = React.lazy(
+const ProductsManager = React.lazy(
   () => import("../components/dashboard/CategoriesManager"),
 );
 const AddProduct = React.lazy(
@@ -27,11 +24,15 @@ const AddProduct = React.lazy(
 const EditProduct = React.lazy(
   () => import("../components/dashboard/EditProduct"),
 );
+const SelectNewestPicks = React.lazy(
+  () => import("../components/dashboard/SelectNewestPicks"),
+);
 
 export default function Dashboard({ session }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("newest-picks");
 
   useEffect(() => {
     if (session?.user) {
@@ -41,13 +42,13 @@ export default function Dashboard({ session }) {
 
   useEffect(() => {
     // Set active section based on current path
-    const path = window.location.pathname;
+    const path = location.pathname;
     if (path.includes("/newest-picks")) setActiveSection("newest-picks");
-    else if (path.includes("/categories")) setActiveSection("categories");
+    else if (path.includes("/products")) setActiveSection("products");
     else if (path.includes("/collections")) setActiveSection("collections");
     else if (path === "/dashboard" || path === "/dashboard/")
-      setActiveSection("home");
-  }, []);
+      setActiveSection("newest-picks"); // Default to newest-picks
+  }, [location.pathname]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -86,25 +87,11 @@ export default function Dashboard({ session }) {
                 <h2 className="font-serif text-xl text-gold mb-6">Dashboard</h2>
                 <nav className="space-y-2">
                   <Link
-                    to="/dashboard"
-                    className={`block px-4 py-2 rounded ${activeSection === "home" ? "bg-gold/20 text-gold" : "text-gold/80 hover:bg-white/10"}`}
-                    onClick={() => setActiveSection("home")}
-                  >
-                    Home
-                  </Link>
-                  <Link
                     to="/dashboard/newest-picks"
                     className={`block px-4 py-2 rounded ${activeSection === "newest-picks" ? "bg-gold/20 text-gold" : "text-gold/80 hover:bg-white/10"}`}
                     onClick={() => setActiveSection("newest-picks")}
                   >
-                    Newest Picks
-                  </Link>
-                  <Link
-                    to="/dashboard/categories"
-                    className={`block px-4 py-2 rounded ${activeSection === "categories" ? "bg-gold/20 text-gold" : "text-gold/80 hover:bg-white/10"}`}
-                    onClick={() => setActiveSection("categories")}
-                  >
-                    Categories
+                    The Newest Picks
                   </Link>
                   <Link
                     to="/dashboard/collections"
@@ -112,6 +99,13 @@ export default function Dashboard({ session }) {
                     onClick={() => setActiveSection("collections")}
                   >
                     Collections
+                  </Link>
+                  <Link
+                    to="/dashboard/products"
+                    className={`block px-4 py-2 rounded ${activeSection === "products" ? "bg-gold/20 text-gold" : "text-gold/80 hover:bg-white/10"}`}
+                    onClick={() => setActiveSection("products")}
+                  >
+                    Products
                   </Link>
                 </nav>
               </div>
@@ -125,12 +119,10 @@ export default function Dashboard({ session }) {
                 }
               >
                 <Routes>
-                  <Route path="/" element={<DashboardHome />} />
+                  <Route path="/" element={<NewestPicks />} />
                   <Route path="/collections" element={<Collections />} />
-                  <Route path="/add" element={<AddCollection />} />
-                  <Route path="/edit/:id" element={<EditCollection />} />
                   <Route path="/newest-picks" element={<NewestPicks />} />
-                  <Route path="/categories" element={<CategoriesManager />} />
+                  <Route path="/products" element={<ProductsManager />} />
                   <Route path="/add-product" element={<AddProduct />} />
                   <Route path="/edit-product/:id" element={<EditProduct />} />
                   <Route

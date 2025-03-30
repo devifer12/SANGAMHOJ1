@@ -1,242 +1,200 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import supabase from "../../config/supabaseClient";
 
-export default function CategoriesManager() {
+export default function ProductsManager() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [newCategory, setNewCategory] = useState({
-    title: "",
-    image: "",
-  });
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    // Get category from URL query params if available
+    const params = new URLSearchParams(location.search);
+    const categoryId = params.get("category");
 
-  async function fetchCategories() {
+    // Fetch categories first
+    fetchCategories(categoryId);
+
+    // Set up realtime subscription for product updates
+    const subscription = supabase
+      .channel("products-changes")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "products" },
+        () => fetchProducts(selectedCategory?.id),
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(subscription);
+    };
+  }, [location.search]);
+
+  // Fetch products whenever selected category changes
+  useEffect(() => {
+    if (selectedCategory) {
+      fetchProducts(selectedCategory.id);
+    }
+  }, [selectedCategory]);
+
+  async function fetchCategories(initialCategoryId = null) {
     try {
       const { data, error } = await supabase
         .from("categories")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("title", { ascending: true });
 
       if (error) throw error;
+
       setCategories(data || []);
+
+      // Set initial selected category
+      if (data && data.length > 0) {
+        if (initialCategoryId) {
+          const category = data.find((cat) => cat.id === initialCategoryId);
+          setSelectedCategory(category || data[0]);
+        } else {
+          setSelectedCategory(data[0]);
+        }
+      }
     } catch (error) {
       console.error("Error fetching categories:", error);
+      setError(error.message);
+    }
+  }
+
+  async function fetchProducts(categoryId) {
+    if (!categoryId) {
+      setProducts([]);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category_id", categoryId)
+        .order("name", { ascending: true });
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      console.error("Error fetching products:", error);
       setError(error.message);
     } finally {
       setLoading(false);
     }
   }
 
-  const handleAddCategory = async () => {
-    if (!newCategory.title || !newCategory.image) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    try {
-      let result;
-
-      if (newCategory.id) {
-        // Update existing category
-        const { data, error } = await supabase
-          .from("categories")
-          .update({
-            title: newCategory.title,
-            image: newCategory.image,
-            updated_at: new Date(),
-          })
-          .eq("id", newCategory.id)
-          .select();
-
-        if (error) throw error;
-        result = data[0];
-      } else {
-        // Insert new category
-        const { data, error } = await supabase
-          .from("categories")
-          .insert({
-            title: newCategory.title,
-            image: newCategory.image,
-          })
-          .select();
-
-        if (error) throw error;
-        result = data[0];
-      }
-
-      // Refresh the categories list
-      fetchCategories();
-      setNewCategory({ title: "", image: "" });
-      setIsAddModalOpen(false);
-    } catch (error) {
-      console.error("Error saving category:", error);
-      alert(`Error saving category: ${error.message}`);
-    }
-  };
-
-  const handleDeleteCategory = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this category?"))
+  const handleDeleteProduct = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this product?"))
       return;
 
     try {
-      const { error } = await supabase.from("categories").delete().eq("id", id);
+      const { error } = await supabase.from("products").delete().eq("id", id);
 
       if (error) throw error;
 
-      // Refresh the categories list
-      fetchCategories();
+      // Refresh the products list
+      fetchProducts(selectedCategory.id);
     } catch (error) {
-      console.error("Error deleting category:", error);
-      alert(`Error deleting category: ${error.message}`);
+      console.error("Error deleting product:", error);
+      alert(`Error deleting product: ${error.message}`);
     }
   };
 
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    try {
-      // Upload to Supabase storage
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
-      const filePath = `categories/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from("SITE IMAGES")
-        .upload(filePath, file);
-
-      if (uploadError) throw uploadError;
-
-      // Get the public URL
-      const { data } = supabase.storage
-        .from("SITE IMAGES")
-        .getPublicUrl(filePath);
-
-      setNewCategory({ ...newCategory, image: data.publicUrl });
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert(`Error uploading image: ${error.message}`);
-    }
-  };
-
-  if (loading) return <div className="text-gold">Loading categories...</div>;
+  if (loading && !selectedCategory)
+    return <div className="text-gold">Loading categories...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-serif text-gold">Manage Categories</h2>
+        <h2 className="text-2xl font-serif text-gold">Manage Products</h2>
         <button
-          onClick={() => setIsAddModalOpen(true)}
+          onClick={() => navigate("/dashboard/add-product")}
           className="bg-gold text-burgundy px-4 py-2 rounded hover:bg-gold/90 transition-colors"
         >
-          Add New Category
+          Add New Product
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {categories.map((category) => (
-          <div
-            key={category.id}
-            className="bg-white/5 rounded-lg p-6 border border-gold/20"
-          >
-            <div className="aspect-square mb-4">
-              <img
-                src={category.image}
-                alt={category.title}
-                className="w-full h-full object-cover rounded"
-              />
-            </div>
-            <h3 className="text-xl font-serif text-gold mb-2">
+      {/* Category selector */}
+      <div className="mb-8">
+        <label className="block text-gold mb-2">Select Collection</label>
+        <select
+          value={selectedCategory?.id || ""}
+          onChange={(e) => {
+            const categoryId = e.target.value;
+            const category = categories.find((c) => c.id === categoryId);
+            setSelectedCategory(category);
+          }}
+          className="w-full md:w-1/3 bg-white/10 border border-gold/30 rounded p-2 text-gold"
+        >
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
               {category.title}
-            </h3>
-            <div className="flex justify-between">
-              <button
-                onClick={() => {
-                  setNewCategory(category);
-                  setIsAddModalOpen(true);
-                }}
-                className="text-gold hover:text-gold/80"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDeleteCategory(category.id)}
-                className="text-red-400 hover:text-red-300"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {/* Add/Edit Category Modal */}
-      {isAddModalOpen && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-burgundy rounded-lg w-full max-w-md p-6 border border-gold/20">
-            <h3 className="text-xl font-serif text-gold mb-4">
-              {newCategory.id ? "Edit Category" : "Add New Category"}
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-gold mb-2">Title</label>
-                <input
-                  type="text"
-                  value={newCategory.title}
-                  onChange={(e) =>
-                    setNewCategory({ ...newCategory, title: e.target.value })
-                  }
-                  className="w-full bg-white/10 border border-gold/30 rounded p-2 text-gold"
-                  placeholder="Category Title"
+      {loading ? (
+        <div className="text-gold">Loading products...</div>
+      ) : products.length === 0 ? (
+        <div className="text-center text-gold py-8">
+          <p className="mb-4">No products found in this collection.</p>
+          <button
+            onClick={() => navigate("/dashboard/add-product")}
+            className="bg-gold text-burgundy px-4 py-2 rounded hover:bg-gold/90 transition-colors"
+          >
+            Add Product
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="bg-white/5 rounded-lg p-6 border border-gold/20"
+            >
+              <div className="aspect-square mb-4">
+                <img
+                  src={product.image_url}
+                  alt={product.name}
+                  className="w-full h-full object-cover rounded"
                 />
               </div>
-              <div>
-                <label className="block text-gold mb-2">Image</label>
-                <div className="flex items-center space-x-4">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="text-gold"
-                  />
-                  {newCategory.image && (
-                    <div className="w-16 h-16 rounded overflow-hidden">
-                      <img
-                        src={newCategory.image}
-                        alt="Preview"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-end space-x-4 mt-6">
+              <h3 className="text-xl font-serif text-gold mb-2">
+                {product.name}
+              </h3>
+              <p className="text-gold/80 mb-4 line-clamp-2">
+                {product.description}
+              </p>
+              <div className="flex justify-between">
                 <button
-                  onClick={() => {
-                    setIsAddModalOpen(false);
-                    setNewCategory({ title: "", image: "" });
-                  }}
-                  className="px-4 py-2 text-gold hover:text-gold/80"
+                  onClick={() =>
+                    navigate(`/dashboard/edit-product/${product.id}`)
+                  }
+                  className="text-gold hover:text-gold/80"
                 >
-                  Cancel
+                  Edit
                 </button>
                 <button
-                  onClick={handleAddCategory}
-                  className="bg-gold text-burgundy px-4 py-2 rounded hover:bg-gold/90 transition-colors"
+                  onClick={() => handleDeleteProduct(product.id)}
+                  className="text-red-400 hover:text-red-300"
                 >
-                  {newCategory.id ? "Save Changes" : "Add Category"}
+                  Delete
                 </button>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       )}
     </div>
