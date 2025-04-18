@@ -28,7 +28,7 @@ export default function NavLinks({ setIsMenuOpen }) {
       }
 
       // Then observe other sections
-      const sections = ["collections", "about", "contact"];
+      const sections = ["about", "contact"];
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) sectionObserver.observe(element);
@@ -58,18 +58,6 @@ export default function NavLinks({ setIsMenuOpen }) {
           }`}
         >
           Home
-        </Link>
-      </div>
-      <div onClick={handleLinkClick}>
-        <Link
-          to="/collections"
-          className={`transition-all duration-300 border-b-2 ${
-            location.pathname === "/collections"
-              ? "border-gold"
-              : "border-transparent hover:border-gold/50"
-          }`}
-        >
-          Collections
         </Link>
       </div>
       <div onClick={handleLinkClick}>
