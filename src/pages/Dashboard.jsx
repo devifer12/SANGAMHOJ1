@@ -27,7 +27,7 @@ const EditProduct = React.lazy(
 const SelectNewestPicks = React.lazy(
   () => import("../components/dashboard/SelectNewestPicks"),
 );
-
+ 
 export default function Dashboard({ session }) {
   const navigate = useNavigate();
   const location = useLocation();
