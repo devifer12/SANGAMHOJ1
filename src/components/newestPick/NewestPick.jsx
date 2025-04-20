@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import supabase from "../../config/supabaseClient";
 
-export default function Collections() {
+export default function NewestPick() {
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   const [collections, setCollections] = useState([]);

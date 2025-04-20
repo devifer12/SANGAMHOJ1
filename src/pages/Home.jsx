@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../components/navigation/Navbar';
 import Hero from '../components/hero/Hero';
-import Collections from '../components/collections/Collections';
-import Categories from '../components/categories/Categories';
+import NewestPick from '../components/newestPick/NewestPick';
 import Testimonials from '../components/testimonials/Testimonials';
 import Footer from '../components/footer/Footer';
 
@@ -37,8 +36,7 @@ export default function Home() {
     <div className="bg-burgundy min-h-screen">
       <Navbar />
       <Hero />
-      <Collections />
-      <Categories />
+      <NewestPick />
       <Testimonials />
       <Footer />
     </div>
