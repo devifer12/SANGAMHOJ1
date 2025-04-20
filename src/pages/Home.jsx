@@ -5,6 +5,7 @@ import Hero from '../components/hero/Hero';
 import NewestPick from '../components/newestPick/NewestPick';
 import Testimonials from '../components/testimonials/Testimonials';
 import Footer from '../components/footer/Footer';
+import ExploreCategory from '../components/exploreCategory/ExploreCategory';
 
 export default function Home() {
   const location = useLocation();
@@ -37,6 +38,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <NewestPick />
+      <ExploreCategory />
       <Testimonials />
       <Footer />
     </div>

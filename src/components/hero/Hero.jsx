@@ -17,7 +17,7 @@ export default function Hero() {
               UNVEILED
             </h1>
             <div className="hidden md:block">
-              <Button onClick={() => navigate('/collections')}>EXPLORE COLLECTIONS</Button>
+              <Button onClick={() => navigate('/collection')}>EXPLORE COLLECTIONS</Button>
             </div>
           </div>
           <div className="relative">
@@ -34,7 +34,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="md:hidden mt-8 text-center">
-          <Button onClick={() => navigate('/collections')}>EXPLORE COLLECTIONS</Button>
+          <Button onClick={() => navigate('/collection')}>EXPLORE COLLECTIONS</Button>
         </div>
       </div>
     </div>

@@ -113,7 +113,7 @@ export default function NewestPick() {
               </p>
               <div className="hidden md:block">
                 <button
-                  onClick={() => navigate("/collections")}
+                  onClick={() => navigate("/collection")}
                   className="border border-burgundy text-black px-8 py-3 rounded-full hover:bg-burgundy hover:text-gold transition-colors"
                 >
                   EXPLORE NOW
@@ -148,7 +148,7 @@ export default function NewestPick() {
         </div>
         <div className="md:hidden text-center mt-12">
           <button
-            onClick={() => navigate("/collections")}
+            onClick={() => navigate("/collection")}
             className="border border-burgundy text-black px-8 py-3 rounded-full hover:bg-burgundy hover:text-gold transition-colors"
           >
             EXPLORE NOW
@@ -162,7 +162,7 @@ export default function NewestPick() {
           <div className="bg-burgundy rounded-lg w-full max-w-7xl max-h-screen overflow-y-auto">
             <div className="flex flex-col md:flex-row">
               {/* Main Image Section (70% width) */}
-              <div className="md:w-[70%] p-8">
+              <div className="md:w-[45%] p-8">
                 <div className="relative">
                   <button
                     onClick={() => setSelectedItem(null)}

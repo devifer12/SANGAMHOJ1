@@ -34,8 +34,18 @@ export default function Footer() {
                 </button>
               </li>
               <li>
+                <button onClick={() => handleNavigation('/collection')} className="hover:text-gold">
+                  Collection
+                </button>
+              </li>
+              <li>
                 <button onClick={() => handleNavigation('/about')} className="hover:text-gold">
                   About Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNavigation('/contact')} className="hover:text-gold">
+                  Contact Us
                 </button>
               </li>
             </ul>
