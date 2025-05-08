@@ -14,7 +14,7 @@ export default function Collection() {
 
     // Set up realtime subscription
     const subscription = supabase
-      .channel("public:collections")
+      .channel("collections-changes")
       .on(
         "postgres_changes",
         {
@@ -25,7 +25,7 @@ export default function Collection() {
         (payload) => {
           console.log("Change received!", payload);
           fetchCollections();
-        },
+        }
       )
       .subscribe();
 
@@ -41,7 +41,7 @@ export default function Collection() {
       const { data, error } = await supabase
         .from("collections")
         .select("*")
-        .order("id", { ascending: true });
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
       setCollections(data || []);
@@ -87,6 +87,7 @@ export default function Collection() {
                         src={item.image_url}
                         alt={item.name}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
                       />
                     </div>
                   )}
