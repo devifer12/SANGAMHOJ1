@@ -1,9 +1,15 @@
 import Logo from "../ui/Logo";
 import NavLinks from "./NavLinks";
 import { useState } from "react";
+import LoginButton from "../ui/LoginButton";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLoginButton, setShowLoginButton] = useState(false);
+
+  const handleLogoClick = () => {
+    setShowLoginButton(true);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-burgundy/95 px-4 md:px-6 border-b border-gold/20">
@@ -11,12 +17,19 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo container */}
           <div className="px-5 w-40 cursor-pointer">
-            <Logo />
+            <Logo onLogoClick={handleLogoClick} />
           </div>
 
           {/* Navigation links - desktop */}
           <div className="hidden md:block flex-1">
-            <NavLinks />
+            <div className="flex items-center justify-end">
+              <NavLinks />
+              {showLoginButton && (
+                <div className="ml-6">
+                  <LoginButton />
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile menu button - moved to the right */}
@@ -51,6 +64,11 @@ export default function Navbar() {
           className={`${isMenuOpen ? "block" : "hidden"} md:hidden mt-4 pb-4`}
         >
           <NavLinks setIsMenuOpen={setIsMenuOpen} />
+          {showLoginButton && (
+            <div className="mt-4 flex justify-center">
+              <LoginButton />
+            </div>
+          )}
         </div>
       </div>
     </nav>

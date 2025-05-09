@@ -5,15 +5,16 @@ import supabase from "../config/supabaseClient";
 
 export default function Collection() {
   const [collections, setCollections] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchCollections();
+    fetchCollectionsAndProducts();
 
-    // Set up realtime subscription
-    const subscription = supabase
+    // Set up realtime subscription for collections
+    const collectionsSubscription = supabase
       .channel("collections-changes")
       .on(
         "postgres_changes",
@@ -23,35 +24,76 @@ export default function Collection() {
           table: "collections",
         },
         (payload) => {
-          console.log("Change received!", payload);
-          fetchCollections();
+          console.log("Collections change received!", payload);
+          fetchCollectionsAndProducts();
         }
       )
       .subscribe();
 
-    // Cleanup subscription on unmount
+    // Set up realtime subscription for products
+    const productsSubscription = supabase
+      .channel("products-changes")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "products",
+        },
+        (payload) => {
+          console.log("Products change received!", payload);
+          fetchCollectionsAndProducts();
+        }
+      )
+      .subscribe();
+
+    // Cleanup subscriptions on unmount
     return () => {
-      supabase.removeChannel(subscription);
+      supabase.removeChannel(collectionsSubscription);
+      supabase.removeChannel(productsSubscription);
     };
   }, []);
 
-  async function fetchCollections() {
+  async function fetchCollectionsAndProducts() {
     try {
       setLoading(true);
-      const { data, error } = await supabase
+      
+      // Fetch collections
+      const { data: collectionsData, error: collectionsError } = await supabase
         .from("collections")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("collection_name", { ascending: true });
 
-      if (error) throw error;
-      setCollections(data || []);
+      if (collectionsError) throw collectionsError;
+      
+      // Fetch products with their collection information
+      const { data: productsData, error: productsError } = await supabase
+        .from("products")
+        .select("*, collections(id, collection_name)")
+        .order("product_name", { ascending: true });
+
+      if (productsError) throw productsError;
+      
+      setCollections(collectionsData || []);
+      setProducts(productsData || []);
     } catch (error) {
-      console.error("Error fetching collections:", error);
-      setError("Failed to fetch collections");
+      console.error("Error fetching data:", error);
+      setError("Failed to fetch collections and products");
     } finally {
       setLoading(false);
     }
   }
+
+  // Group products by collection
+  const productsByCollection = collections.map(collection => {
+    const collectionProducts = products.filter(
+      product => product.collection_id === collection.id
+    );
+    return {
+      ...collection,
+      products: collectionProducts
+    };
+  });
 
   return (
     <div className="min-h-screen bg-burgundy">
@@ -70,33 +112,47 @@ export default function Collection() {
             <div className="text-center text-gold">
               <p>Loading collections...</p>
             </div>
-          ) : collections.length === 0 ? (
+          ) : productsByCollection.length === 0 ? (
             <div className="text-center text-gold">
               <p>No collections available yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {collections.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white/5 rounded-lg overflow-hidden"
-                >
-                  {item.image_url && (
-                    <div className="aspect-square overflow-hidden">
-                      <img
-                        src={item.image_url}
-                        alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                        loading="lazy"
-                      />
+            <div className="space-y-16">
+              {productsByCollection.map((collection) => (
+                <div key={collection.id} className="mb-12">
+                  <h2 className="font-serif text-3xl text-gold mb-6 border-b border-gold/30 pb-2">
+                    {collection.collection_name}
+                  </h2>
+                  
+                  {collection.products.length === 0 ? (
+                    <p className="text-gold/80 italic">No products in this collection yet.</p>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {collection.products.map((product) => (
+                        <div
+                          key={product.id}
+                          className="bg-white/5 rounded-lg overflow-hidden"
+                        >
+                          {product.image_url && (
+                            <div className="aspect-square overflow-hidden">
+                              <img
+                                src={product.image_url}
+                                alt={product.product_name}
+                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                                loading="lazy"
+                              />
+                            </div>
+                          )}
+                          <div className="p-6">
+                            <h3 className="font-serif text-2xl text-gold mb-2">
+                              {product.product_name}
+                            </h3>
+                            <p className="text-gold/80">{product.description}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
-                  <div className="p-6">
-                    <h3 className="font-serif text-2xl text-gold mb-2">
-                      {item.name}
-                    </h3>
-                    <p className="text-gold/80">{item.description}</p>
-                  </div>
                 </div>
               ))}
             </div>
