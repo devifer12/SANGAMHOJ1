@@ -71,7 +71,6 @@ export default function Contact() {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form Submitted", formData);
-      // Send data to backend here if needed
     } else {
       console.log("Form Validation Failed");
     }
@@ -79,12 +78,14 @@ export default function Contact() {
 
   const handleKeyDown = (e, nextRef) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent form submission
+      e.preventDefault();
       if (nextRef && nextRef.current) {
-        nextRef.current.focus(); // Focus on the next input field
+        nextRef.current.focus();
       }
     }
   };
+
+  const inputClasses = "w-full bg-white/5 border border-gold/20 rounded-md text-gold px-4 py-3 placeholder:text-gold/30 placeholder:font-light focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all";
 
   return (
     <div className="min-h-screen bg-burgundy">
@@ -96,11 +97,11 @@ export default function Contact() {
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-white/5 p-8 rounded-lg">
+            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm">
               <h2 className="font-serif text-2xl text-gold mb-6">Get in Touch</h2>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="name" className="block text-gold mb-2">
+                  <label htmlFor="name" className="block text-gold mb-2 font-light">
                     Name
                   </label>
                   <input
@@ -109,15 +110,15 @@ export default function Contact() {
                     name="Name"
                     value={formData.Name}
                     onChange={handleChange}
-                    placeholder="Enter Your Name"
-                    className="w-full bg-white/10 border-gold/30 rounded-md text-gold"
+                    placeholder="Your name"
+                    className={inputClasses}
                     onKeyDown={(e) => handleKeyDown(e, companyNameRef)}
                   />
                   {errors?.Name && <div className="errors">{errors.Name}</div>}
                 </div>
 
                 <div>
-                  <label htmlFor="CName" className="block text-gold mb-2">
+                  <label htmlFor="CName" className="block text-gold mb-2 font-light">
                     Company Name
                   </label>
                   <input
@@ -126,42 +127,43 @@ export default function Contact() {
                     name="companyName"
                     value={formData.companyName}
                     onChange={handleChange}
-                    placeholder="Enter Your Company Name"
-                    className="w-full bg-white/10 border-gold/30 rounded-md text-gold"
+                    placeholder="Your company name"
+                    className={inputClasses}
                     ref={companyNameRef}
-                    onKeyDown={(e) => handleKeyDown(e, phoneRef)} // Move focus to the next field (Phone)
+                    onKeyDown={(e) => handleKeyDown(e, phoneRef)}
                   />
-                  {errors?.companyName && (
-                    <div className="errors">{errors.companyName}</div>
-                  )}
+                  {errors?.companyName && <div className="errors">{errors.companyName}</div>}
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-gold mb-2">
+                  <label htmlFor="phone" className="block text-gold mb-2 font-light">
                     Mobile No.
                   </label>
                   <PhoneInput
                     country={"in"}
                     value={formData.phone}
                     onChange={(phone) => setFormData({ ...formData, phone })}
-                    inputClass="w-full bg-white/10 border-gold/30 rounded-md text-gold"
+                    inputClass="w-full bg-white/5 border-gold/20 rounded-md text-gold"
                     inputStyle={{
                       backgroundColor: "transparent",
-                      border: "1px solid #D4AF37",
-                      color: "#D4AF37",
+                      border: "1px solid rgba(212, 175, 55, 0.2)",
+                      color: "#dcb452",
                       width: "100%",
+                      height: "2.75rem",
                     }}
                     buttonStyle={{
                       backgroundColor: "transparent",
-                      border: "1px solid #D4AF37",
+                      border: "1px solid rgba(212, 175, 55, 0.2)",
+                      borderRight: "none",
                     }}
-                    onKeyDown={(e) => handleKeyDown(e, emailRef)} // Move focus to the next field (Email)
+                    ref={phoneRef}
+                    onKeyDown={(e) => handleKeyDown(e, emailRef)}
                   />
                   {errors?.phone && <div className="errors">{errors.phone}</div>}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-gold mb-2">
+                  <label htmlFor="email" className="block text-gold mb-2 font-light">
                     Email (optional)
                   </label>
                   <input
@@ -170,16 +172,16 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="abc@gmail.com"
-                    className="w-full bg-white/10 border-gold/30 rounded-md text-gold"
+                    placeholder="your.email@example.com"
+                    className={inputClasses}
                     ref={emailRef}
-                    onKeyDown={(e) => handleKeyDown(e, messageRef)} // Move focus to the next field (Message)
+                    onKeyDown={(e) => handleKeyDown(e, messageRef)}
                   />
                   {errors?.email && <div className="errors">{errors.email}</div>}
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-gold mb-2">
+                  <label htmlFor="message" className="block text-gold mb-2 font-light">
                     Message
                   </label>
                   <textarea
@@ -188,7 +190,8 @@ export default function Contact() {
                     rows="3"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-white/10 border-gold/30 rounded-md text-gold"
+                    placeholder="Your message"
+                    className={inputClasses}
                     ref={messageRef}
                   />
                   {errors?.message && <div className="errors">{errors.message}</div>}
@@ -196,7 +199,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full bg-gold text-burgundy py-2 rounded-md hover:bg-gold/90 transition-colors">
+                  className="w-full bg-gold text-burgundy py-3 rounded-md hover:bg-gold/90 transition-colors font-medium">
                   Send Message
                 </button>
               </form>
