@@ -108,14 +108,17 @@ export default function NewestPick() {
                 <div
                   key={product.id}
                   className="group cursor-pointer transform transition-transform hover:scale-105"
-                  onClick={() => navigate("/collection")}
+                  onClick={() => navigate(`/collection#product-${product.id}`)}
                 >
                   <div className="aspect-square rounded-lg overflow-hidden mb-4 bg-white shadow-lg hover:shadow-xl transition-shadow">
                     {product.image_url ? (
                       <img
-                        src={product.image_url}
+                        src={`${product.image_url}?w=400&q=75`}
                         alt={product.product_name}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        width={400}
+                        height={400}
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-100 flex items-center justify-center">

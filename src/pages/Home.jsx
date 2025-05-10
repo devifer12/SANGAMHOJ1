@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import Navbar from '../components/navigation/Navbar';
-import Hero from '../components/hero/Hero';
-import NewestPick from '../components/newestPick/NewestPick';
-import Testimonials from '../components/testimonials/Testimonials';
-import Footer from '../components/footer/Footer';
-import ExploreCategory from '../components/exploreCategory/ExploreCategory';
+import React, { useEffect, lazy, Suspense } from "react";
+import { useLocation } from "react-router-dom";
+import Navbar from "../components/navigation/Navbar";
+import Hero from "../components/hero/Hero";
+import Footer from "../components/footer/Footer";
+
+// Lazy load components that are not immediately visible
+const NewestPick = lazy(() => import("../components/newestPick/NewestPick"));
+const Testimonials = lazy(
+  () => import("../components/testimonials/Testimonials"),
+);
+const ExploreCategory = lazy(
+  () => import("../components/exploreCategory/ExploreCategory"),
+);
 
 export default function Home() {
   const location = useLocation();
@@ -17,12 +23,13 @@ export default function Home() {
       const element = document.getElementById(sectionId);
       if (element) {
         const navbarHeight = 80;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - navbarHeight;
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
       // Clear the state to prevent scrolling on subsequent renders
@@ -37,9 +44,17 @@ export default function Home() {
     <div className="bg-burgundy min-h-screen">
       <Navbar />
       <Hero />
-      <NewestPick />
-      <ExploreCategory />
-      <Testimonials />
+      <Suspense
+        fallback={
+          <div className="h-96 flex items-center justify-center text-gold">
+            Loading...
+          </div>
+        }
+      >
+        <NewestPick />
+        <ExploreCategory />
+        <Testimonials />
+      </Suspense>
       <Footer />
     </div>
   );

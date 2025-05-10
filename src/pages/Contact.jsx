@@ -67,22 +67,69 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const [submitStatus, setSubmitStatus] = useState({
+    loading: false,
+    success: false,
+    error: null,
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    window.scrollTo({ top: 143.1999969482422, behavior: 'smooth' }); // Scroll to top
+    window.scrollTo({ top: 143.1999969482422, behavior: "smooth" }); // Scroll to top
     if (validateForm()) {
-      console.log("Form Submitted", formData);
+      setSubmitStatus({ loading: true, success: false, error: null });
 
-      // Reset form data
-      setFormData({
-        Name: "",
-        companyName: "",
-        phone: "91",
-        email: "",
-        message: "",
-      });
+      try {
+        // Google Sheets API endpoint
+        const sheetUrl =
+          "https://docs.google.com/spreadsheets/d/1ne38xXaoMU1rM-vtCYuVjNPT0g9g2S5gfOmGlIra7Ug/edit?usp=sharing";
 
-      setErrors({}); // Clear errors too
+        // Format data for Google Sheets
+        const formattedData = {
+          Name: formData.Name,
+          CompanyName: formData.companyName,
+          Phone: formData.phone,
+          Email: formData.email || "Not provided",
+          Message: formData.message,
+          SubmittedAt: new Date().toISOString(),
+        };
+
+        // Send data to Google Sheets
+        const response = await fetch(sheetUrl, {
+          method: "POST",
+          body: JSON.stringify(formattedData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors", // Required for Google Apps Script
+        });
+
+        console.log("Form submitted to Google Sheets");
+        setSubmitStatus({ loading: false, success: true, error: null });
+
+        // Reset form data
+        setFormData({
+          Name: "",
+          companyName: "",
+          phone: "91",
+          email: "",
+          message: "",
+        });
+
+        setErrors({}); // Clear errors too
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus((prev) => ({ ...prev, success: false }));
+        }, 5000);
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setSubmitStatus({
+          loading: false,
+          success: false,
+          error: "Failed to submit form. Please try again.",
+        });
+      }
     } else {
       console.log("Form Validation Failed");
     }
@@ -92,12 +139,21 @@ export default function Contact() {
     if (e.key === "Enter") {
       e.preventDefault();
       if (nextRef && nextRef.current) {
-        nextRef.current.focus();
+        // For PhoneInput, we need to focus the input inside
+        if (nextRef === phoneRef && phoneRef.current) {
+          const inputElement = phoneRef.current.numberInputRef;
+          if (inputElement) {
+            setTimeout(() => inputElement.focus(), 0);
+          }
+        } else if (typeof nextRef.current.focus === "function") {
+          nextRef.current.focus();
+        }
       }
     }
   };
 
-  const inputClasses = "w-full bg-white/5 border border-gold/20 rounded-md text-gold px-4 py-3 placeholder:text-gold/30 placeholder:font-light focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all";
+  const inputClasses =
+    "w-full bg-white/5 border border-gold/20 rounded-md text-gold px-4 py-3 placeholder:text-gold/60 placeholder:font-light focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all";
 
   return (
     <div className="min-h-screen bg-burgundy">
@@ -115,7 +171,10 @@ export default function Contact() {
               </h2>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="name" className="block text-gold mb-2 font-light">
+                  <label
+                    htmlFor="name"
+                    className="block text-gold mb-2 font-light"
+                  >
                     Name
                   </label>
                   <input
@@ -132,7 +191,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="CName" className="block text-gold mb-2 font-light">
+                  <label
+                    htmlFor="CName"
+                    className="block text-gold mb-2 font-light"
+                  >
                     Company Name
                   </label>
                   <input
@@ -146,11 +208,16 @@ export default function Contact() {
                     ref={companyNameRef}
                     onKeyDown={(e) => handleKeyDown(e, phoneRef)}
                   />
-                  {errors?.companyName && <div className="errors">{errors.companyName}</div>}
+                  {errors?.companyName && (
+                    <div className="errors">{errors.companyName}</div>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-gold mb-2 font-light">
+                  <label
+                    htmlFor="phone"
+                    className="block text-gold mb-2 font-light"
+                  >
                     Mobile No.
                   </label>
                   <PhoneInput
@@ -180,7 +247,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-gold mb-2 font-light">
+                  <label
+                    htmlFor="email"
+                    className="block text-gold mb-2 font-light"
+                  >
                     Email (optional)
                   </label>
                   <input
@@ -200,7 +270,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-gold mb-2 font-light">
+                  <label
+                    htmlFor="message"
+                    className="block text-gold mb-2 font-light"
+                  >
                     Message
                   </label>
                   <textarea
@@ -224,11 +297,24 @@ export default function Contact() {
                   )}
                 </div>
 
+                {submitStatus.success && (
+                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+                    Message sent successfully! We'll get back to you soon.
+                  </div>
+                )}
+
+                {submitStatus.error && (
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                    {submitStatus.error}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  onSubmit={handleSubmit}
-                  className="w-full bg-gold text-burgundy py-2 rounded-md hover:bg-gold/90 transition-colors">
-                  Send Message
+                  disabled={submitStatus.loading}
+                  className={`w-full bg-gold text-burgundy py-2 rounded-md hover:bg-gold/90 transition-colors ${submitStatus.loading ? "opacity-70 cursor-not-allowed" : ""}`}
+                >
+                  {submitStatus.loading ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>

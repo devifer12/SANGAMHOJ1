@@ -153,9 +153,12 @@ export default function NewestPick({ user }) {
                 {pick.products?.image_url && (
                   <div className="aspect-video overflow-hidden">
                     <img
-                      src={pick.products.image_url}
+                      src={`${pick.products.image_url}?w=400&q=75`}
                       alt={pick.products.product_name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      width={400}
+                      height={225}
                     />
                   </div>
                 )}
@@ -201,9 +204,12 @@ export default function NewestPick({ user }) {
                 {product.image_url && (
                   <div className="aspect-video overflow-hidden">
                     <img
-                      src={product.image_url}
+                      src={`${product.image_url}?w=400&q=75`}
                       alt={product.product_name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      width={400}
+                      height={225}
                     />
                   </div>
                 )}
