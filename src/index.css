@@ -24,3 +24,8 @@ html {
     background-size: 200% auto;
   }
 }
+
+.errors {
+  color: red;
+  padding-top: 2px;
+}
