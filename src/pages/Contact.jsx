@@ -69,9 +69,20 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    window.scrollTo({ top: 143.1999969482422, behavior: 'smooth' }); // Scroll to top
     if (validateForm()) {
       console.log("Form Submitted", formData);
-      // Send data to backend here if needed
+
+      // Reset form data
+      setFormData({
+        Name: "",
+        companyName: "",
+        phone: "91",
+        email: "",
+        message: "",
+      });
+
+      setErrors({}); // Clear errors too
     } else {
       console.log("Form Validation Failed");
     }
@@ -97,7 +108,9 @@ export default function Contact() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="bg-white/5 p-8 rounded-lg">
-              <h2 className="font-serif text-2xl text-gold mb-6">Get in Touch</h2>
+              <h2 className="font-serif text-2xl text-gold mb-6">
+                Get in Touch
+              </h2>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-gold mb-2">
@@ -142,6 +155,7 @@ export default function Contact() {
                   </label>
                   <PhoneInput
                     country={"in"}
+                    preferredCountries={["in"]}
                     value={formData.phone}
                     onChange={(phone) => setFormData({ ...formData, phone })}
                     inputClass="w-full bg-white/10 border-gold/30 rounded-md text-gold"
@@ -157,7 +171,9 @@ export default function Contact() {
                     }}
                     onKeyDown={(e) => handleKeyDown(e, emailRef)} // Move focus to the next field (Email)
                   />
-                  {errors?.phone && <div className="errors">{errors.phone}</div>}
+                  {errors?.phone && (
+                    <div className="errors">{errors.phone}</div>
+                  )}
                 </div>
 
                 <div>
@@ -175,7 +191,9 @@ export default function Contact() {
                     ref={emailRef}
                     onKeyDown={(e) => handleKeyDown(e, messageRef)} // Move focus to the next field (Message)
                   />
-                  {errors?.email && <div className="errors">{errors.email}</div>}
+                  {errors?.email && (
+                    <div className="errors">{errors.email}</div>
+                  )}
                 </div>
 
                 <div>
@@ -190,12 +208,21 @@ export default function Contact() {
                     onChange={handleChange}
                     className="w-full bg-white/10 border-gold/30 rounded-md text-gold"
                     ref={messageRef}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault(); // Prevent newline
+                        handleSubmit(e); // Submit form
+                      }
+                    }}
                   />
-                  {errors?.message && <div className="errors">{errors.message}</div>}
+                  {errors?.message && (
+                    <div className="errors">{errors.message}</div>
+                  )}
                 </div>
 
                 <button
                   type="submit"
+                  onSubmit={handleSubmit}
                   className="w-full bg-gold text-burgundy py-2 rounded-md hover:bg-gold/90 transition-colors">
                   Send Message
                 </button>
