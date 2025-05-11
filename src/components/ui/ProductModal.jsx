@@ -19,23 +19,42 @@ export default function ProductModal({ product, onClose }) {
     setPosition({ x: 0, y: 0 });
   };
 
-  const handleMouseDown = (e) => {
+  // Handle both mouse and touch events for dragging
+  const handleDragStart = (e) => {
     if (scale > 1) {
       setIsDragging(true);
-      setDragStart({ x: e.clientX, y: e.clientY });
+      // Handle both mouse and touch events
+      const clientX = e.type.includes("mouse")
+        ? e.clientX
+        : e.touches[0].clientX;
+      const clientY = e.type.includes("mouse")
+        ? e.clientY
+        : e.touches[0].clientY;
+      setDragStart({ x: clientX, y: clientY });
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleDragMove = (e) => {
     if (isDragging && scale > 1) {
-      const deltaX = e.clientX - dragStart.x;
-      const deltaY = e.clientY - dragStart.y;
+      // Prevent default to stop scrolling on mobile
+      e.preventDefault();
+
+      // Handle both mouse and touch events
+      const clientX = e.type.includes("mouse")
+        ? e.clientX
+        : e.touches[0].clientX;
+      const clientY = e.type.includes("mouse")
+        ? e.clientY
+        : e.touches[0].clientY;
+
+      const deltaX = clientX - dragStart.x;
+      const deltaY = clientY - dragStart.y;
       setPosition((prev) => ({ x: prev.x + deltaX, y: prev.y + deltaY }));
-      setDragStart({ x: e.clientX, y: e.clientY });
+      setDragStart({ x: clientX, y: clientY });
     }
   };
 
-  const handleMouseUp = () => {
+  const handleDragEnd = () => {
     setIsDragging(false);
   };
 
@@ -81,10 +100,14 @@ export default function ProductModal({ product, onClose }) {
             <div className="md:w-1/2 relative">
               <div
                 className="overflow-hidden rounded-lg bg-black/20 aspect-square"
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
+                onMouseDown={handleDragStart}
+                onMouseMove={handleDragMove}
+                onMouseUp={handleDragEnd}
+                onMouseLeave={handleDragEnd}
+                onTouchStart={handleDragStart}
+                onTouchMove={handleDragMove}
+                onTouchEnd={handleDragEnd}
+                onTouchCancel={handleDragEnd}
               >
                 {product.image_url && (
                   <img

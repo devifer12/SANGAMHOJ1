@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useRoutes,
+  useLocation,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -12,8 +13,12 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import Collection from "./pages/Collection";
 import Dashboard from "./pages/Dashboard";
+import WhatsAppButton from "./components/ui/WhatsAppButton";
 
 function AppRoutes() {
+  const location = useLocation();
+  const isDashboard = location.pathname === "/dashboard";
+
   return (
     <>
       <Routes>
@@ -25,6 +30,9 @@ function AppRoutes() {
         <Route path="/collection" element={<Collection />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
+
+      {/* WhatsApp button on all pages except dashboard */}
+      {!isDashboard && <WhatsAppButton />}
     </>
   );
 }
