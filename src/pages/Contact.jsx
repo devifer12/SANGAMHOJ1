@@ -80,7 +80,6 @@ export default function Contact() {
       setSubmitStatus({ loading: true, success: false, error: null });
 
       try {
-        const sheetUrl =
         // Replace this URL with your Google Apps Script deployment URL
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbwmKnLcukj2TiGFuMo-FXQVo9WJDg6BCcQHvMj9U9ikBr315E9WI0USa6zo79h9Om8J-A/exec';
 
