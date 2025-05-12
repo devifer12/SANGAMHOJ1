@@ -80,31 +80,25 @@ export default function Contact() {
       setSubmitStatus({ loading: true, success: false, error: null });
 
       try {
-        // Google Sheets API endpoint
         const sheetUrl =
-          "https://docs.google.com/spreadsheets/d/1ne38xXaoMU1rM-vtCYuVjNPT0g9g2S5gfOmGlIra7Ug/edit?usp=sharing";
+        // Replace this URL with your Google Apps Script deployment URL
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbwmKnLcukj2TiGFuMo-FXQVo9WJDg6BCcQHvMj9U9ikBr315E9WI0USa6zo79h9Om8J-A/exec';
 
-        // Format data for Google Sheets
-        const formattedData = {
-          Name: formData.Name,
-          CompanyName: formData.companyName,
-          Phone: formData.phone,
-          Email: formData.email || "Not provided",
-          Message: formData.message,
-          SubmittedAt: new Date().toISOString(),
-        };
-
-        // Send data to Google Sheets
-        const response = await fetch(sheetUrl, {
-          method: "POST",
-          body: JSON.stringify(formattedData),
+        const response = await fetch(scriptUrl, {
+          method: 'POST',
+          body: JSON.stringify({
+            Name: formData.Name,
+            CompanyName: formData.companyName,
+            Phone: formData.phone,
+            Email: formData.email || "Not provided",
+            Message: formData.message,
+          }),
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           mode: "no-cors", // Required for Google Apps Script
         });
 
-        console.log("Form submitted to Google Sheets");
         setSubmitStatus({ loading: false, success: true, error: null });
 
         // Reset form data
