@@ -92,7 +92,7 @@ export default function Logo({ onLogoClick }) {
         >
           <div className="w-14 h-14 flex-shrink-0 ">
             <img
-              src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL0xvZ28ucG5nIiwiaWF0IjoxNzM3ODc2Mzg0LCJleHAiOjE3Njk0MTIzODR9.fuC4Ve599pNpf0DGm97oXHCwwH6o74MA6KcQgnHJMA0&t=2025-01-26T07%3A26%3A24.271Z"
+              src={Logo}
               alt="Sangam House of Jewels"
               className="w-full h-full object-contain"
               width={64}
