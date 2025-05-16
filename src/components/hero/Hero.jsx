@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
+import supabase from "../../config/supabaseClient";
 
 export default function Hero() {
   const navigate = useNavigate();
+  const HeroImage = supabase.storage.from("ui").getPublicUrl("HeroImage.png").data.publicUrl
 
   return (
     <div className="relative min-h-screen bg-burgundy overflow-hidden pt-32 mb-6 hero-section">
@@ -26,15 +28,12 @@ export default function Hero() {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-square rounded-lg overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden">
               <img
-                src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/HERO%20SECTION/HeroImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9IRVJPIFNFQ1RJT04vSGVyb0ltYWdlLnBuZyIsImlhdCI6MTczNzg3NjA4MSwiZXhwIjoxNzY5NDEyMDgxfQ.n1PJNaCFhuQqI3m9Wre1UlT-pxuDpt4tUurYn_FQEbE&t=2025-01-26T07%3A21%3A21.528Z&w=600&q=80"
-                alt="Hero Jewelry"
-                className="w-full h-full object-contain"
-                loading="eager"
-                width={600}
-                height={600}
-                fetchPriority="high"
+                src={HeroImage}
+                alt="Hero Image"
+                className=" w-60% h-80% "
+                loading="lazy"
               />
             </div>
           </div>

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import supabase from "../../config/supabaseClient";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -7,6 +8,8 @@ export default function Footer() {
     navigate(path);
     window.scrollTo(0, 0);
   };
+
+  const Logo = supabase.storage.from("ui").getPublicUrl("logo.png").data.publicUrl
 
   return (
     <footer
@@ -18,11 +21,9 @@ export default function Footer() {
           <div>
             <div className="text-gold flex flex-col items-center">
               <img
-                src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/logo/Logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9sb2dvL0xvZ28ucG5nIiwiaWF0IjoxNzM3ODc2Mzg0LCJleHAiOjE3Njk0MTIzODR9.fuC4Ve599pNpf0DGm97oXHCwwH6o74MA6KcQgnHJMA0&w=96&q=80"
+                src={Logo}
                 alt="Sangam Logo"
-                className="w-10 h-8 mb-2"
-                width={48}
-                height={48}
+                className="mb-2"
                 loading="eager"
               />
               <h1 className="font-serif text-xl">SANGAM</h1>

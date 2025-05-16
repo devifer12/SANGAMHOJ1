@@ -1,31 +1,32 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/navigation/Navbar";
 import Footer from "../components/footer/Footer";
+import supabase from "../config/supabaseClient";
 
 export default function About() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const AboutImage = supabase.storage.from("ui").getPublicUrl("about us.png").data.publicUrl
+
   return (
     <div className="min-h-screen bg-burgundy">
       <Navbar />
-      <div className="pt-32 pb-16">
+      <div className="pt-28 pb-16">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <h1 className="font-serif text-4xl md:text-5xl text-gold text-center mb-16">
+          <h1 className="font-serif text-4xl md:text-5xl text-gold text-center mb-12">
             About Us
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div className="w-full">
-              <div className="aspect-auto rounded-lg overflow-hidden">
+              <div className="items-start rounded-lg overflow-hidden">
                 <img
-                  src="https://gkecjqzzhkihefvkvpxi.supabase.co/storage/v1/object/sign/SITE%20IMAGES/HERO%20SECTION/HeroImage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTSVRFIElNQUdFUy9IRVJPIFNFQ1RJT04vSGVyb0ltYWdlLnBuZyIsImlhdCI6MTczNzg3NjA4MSwiZXhwIjoxNzY5NDEyMDgxfQ.n1PJNaCFhuQqI3m9Wre1UlT-pxuDpt4tUurYn_FQEbE&w=600&q=80"
+                  src={AboutImage}
                   alt="About Sangam"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-[30rem] object-contain"
                   loading="lazy"
-                  width={600}
-                  height={600}
                 />
               </div>
             </div>
