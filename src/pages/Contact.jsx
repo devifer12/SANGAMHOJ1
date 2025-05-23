@@ -318,11 +318,11 @@ export default function Contact() {
                 <p>
                   <strong>Address:</strong>
                   <br />
-                  702, DD JEWELS, 7th FLOOR,
+                  Swarn House, 3rd Floor,
                   <br />
-                  1st AGAIRY LANE, ZAVERI BAZZAR,
+                  17 / 19 Dhanji Street, Zaveri Bazaar,
                   <br />
-                  KALBADEVI ROAD, Mumbai, 400002
+                  Mumbai, 400003
                 </p>
                 <p>
                   <strong>Phone:</strong>
@@ -332,7 +332,7 @@ export default function Contact() {
                 <p>
                   <strong>Email:</strong>
                   <br />
-                  sangamhoj@gmail.com
+                  info@sangamjewels.com
                 </p>
                 <p>
                   <strong>Hours:</strong>
