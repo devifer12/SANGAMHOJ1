@@ -9,7 +9,7 @@ export default function Footer() {
     window.scrollTo(0, 0);
   };
 
-  const Logo = supabase.storage.from("ui").getPublicUrl("logo.png").data.publicUrl
+  const Logo = supabase.storage.from("ui").getPublicUrl("Sangam new logo 01.png").data.publicUrl
 
   return (
     <footer
@@ -18,17 +18,15 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div>
-            <div className="text-gold flex flex-col items-center">
+          <div className="flex items-center justify-center h-[10rem]">
               <img
                 src={Logo}
                 alt="Sangam Logo"
                 className="mb-2"
+                width="200"
+                height="200"
                 loading="eager"
               />
-              <h1 className="font-serif text-xl">SANGAM</h1>
-              <p className="text-sm tracking-wider">HOUSE OF JEWELS</p>
-            </div>
           </div>
           <div>
             <h3 className="text-gold font-bold mb-4">Quick Links</h3>
