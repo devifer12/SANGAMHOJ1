@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         <div
-          className={`${isMenuOpen ? "block" : "hidden"} md:hidden mt-40 pb-4`}
+          className={`${isMenuOpen ? "block" : "hidden"} md:hidden mt-4 pb-4`}
         >
           <NavLinks setIsMenuOpen={setIsMenuOpen} />
           {showLoginButton && (
