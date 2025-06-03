@@ -12,11 +12,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-burgundy/95 px-4 md:px-6 border-b border-gold/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between h-20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-burgundy/95 px-4 py-4 md:px-6 border-b border-gold/20">
+      <div className="max-w-7xl max-h-4xl mx-auto">
+        <div className="flex items-center justify-between h-45">
           {/* Logo container */}
-          <div className="px-5 w-40 cursor-pointer">
+          <div className="px-5 w-60 cursor-pointer">
             <Logo onLogoClick={handleLogoClick} />
           </div>
 
@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         <div
-          className={`${isMenuOpen ? "block" : "hidden"} md:hidden mt-4 pb-4`}
+          className={`${isMenuOpen ? "block" : "hidden"} md:hidden mt-40 pb-4`}
         >
           <NavLinks setIsMenuOpen={setIsMenuOpen} />
           {showLoginButton && (
